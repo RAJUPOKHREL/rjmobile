@@ -4,52 +4,115 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RJ MOBILE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: sans-serif;
       margin: 0;
-      padding: 0;
-      background: #f7f7f7;
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f9fa;
     }
+
     header {
-      background-color: #333;
-      color: #fff;
+      background-color: #212529;
+      color: white;
       text-align: center;
-      padding: 20px;
+      padding: 1rem 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    header p {
+      margin: 0.3rem 0;
+      font-size: 0.95rem;
+    }
+
     nav {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      margin: 20px 0;
+      gap: 1rem;
+      background-color: #343a40;
+      padding: 0.5rem;
     }
-    nav a {
-      text-decoration: none;
-      background: #444;
+
+    nav button {
+      background: #6c757d;
       color: white;
-      padding: 10px 20px;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    nav button:hover {
+      background: #495057;
+    }
+
+    .section {
+      display: none;
+      padding: 1rem;
+    }
+
+    .visible {
+      display: block;
+    }
+
+    .card {
+      background: white;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contact-links {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .contact-links a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #007bff;
+    }
+
+    label {
+      display: block;
+      margin-top: 0.5rem;
+      font-weight: 600;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.2rem;
+      border: 1px solid #ced4da;
       border-radius: 5px;
     }
-    section {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
+
+    button.submit-btn {
+      background-color: #198754;
+      color: white;
+      border: none;
+      padding: 0.5rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      cursor: pointer;
     }
-    .phone-box {
-      background: white;
-      margin: 10px 0;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    form input, form textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 5px 0 15px;
-    }
-    .contact-icons a {
-      margin-right: 10px;
-      font-size: 20px;
+
+    button.submit-btn:hover {
+      background-color: #157347;
     }
   </style>
 </head>
@@ -57,72 +120,82 @@
   <header>
     <h1>RJ MOBILE</h1>
     <p>Second-Hand, Brand New, and Preorders Available</p>
-    <p>ရောင်းပြီးသား / အသစ် / ကြိုတင်မှာယူမှုများ</p>
+    <p>အသစ် / တစ်ကြိမ်သုံး / ကြိုတင်မှာယူမှုများ</p>
   </header>
 
   <nav>
-    <a href="#brandnew">🆕 Brand New</a>
-    <a href="#secondhand">📱 Second-Hand</a>
-    <a href="#preorder">📝 Preorder</a>
+    <button onclick="showSection('brand')">Brand New</button>
+    <button onclick="showSection('second')">Second-Hand</button>
+    <button onclick="showSection('preorder')">Preorder</button>
   </nav>
 
-  <section id="brandnew">
-    <h2>🆕 Brand New Phones</h2>
-    <!-- Example -->
-    <div class="phone-box">
-      <strong>iPhone 13 - 128GB</strong><br />
-      Price: Contact for info<br />
-      Availability: ✅ In Stock
+  <section id="brand" class="section visible">
+    <div class="card">
+      <h3>📱 iPhone 13 - 128GB</h3>
+      <p>Price: Contact for info</p>
+      <p>Availability: ✅ In Stock</p>
     </div>
   </section>
 
-  <section id="secondhand">
-    <h2>📱 Second-Hand Phones</h2>
-    <div class="phone-box">
-      <strong>Vivo Y33s - 8/128GB</strong><br />
-      Changed display, small white spot<br />
-      Backcover 85%, corners faded<br />
-      Price: 300,000 MMK (with free charger)<br />
+  <section id="second" class="section">
+    <div class="card">
+      <h3>📱 Samsung Galaxy A12 - 64GB</h3>
+      <p>Price: 190,000 MMK</p>
+      <p>Condition: Good</p>
     </div>
   </section>
 
-  <section id="preorder">
-    <h2>📝 Preorder Your Phone</h2>
-    <form id="preorderForm">
-      <label>Model you want (e.g., iPhone 15 Pro):</label>
-      <input type="text" id="model" name="model" required />
+  <section id="preorder" class="section">
+    <div class="card">
+      <form onsubmit="handlePreorder(event)">
+        <label for="model">Desired Phone Model:</label>
+        <input type="text" id="model" name="model" required />
 
-      <label>Budget (MMK):</label>
-      <input type="text" name="budget" />
+        <label for="contact">Your Contact Info:</label>
+        <textarea id="contact" name="contact" rows="2" required></textarea>
 
-      <label>Your Contact Info (Phone, Viber, Telegram, FB):</label>
-      <textarea name="contact" required></textarea>
+        <div id="budgetRow">
+          <label for="budget">Your Budget (for second-hand only):</label>
+          <input type="number" id="budget" name="budget" />
+        </div>
 
-      <button type="submit">Submit Preorder</button>
-    </form>
-    <p id="result" style="color: red; font-weight: bold;"></p>
-  </section>
-
-  <section>
-    <h3>📲 Contact RJ MOBILE</h3>
-    <div class="contact-icons">
-      <a href="https://www.facebook.com/share/1995K5GJaV/?mibextid=wwXIfr" target="_blank">Facebook</a>
-      <a href="https://connect.viber.com/business/8085460a-beae-11ef-b567-8260b7d9dfd7?utm_source=manage&utm_medium=copy_link" target="_blank">Viber</a>
-      <a href="https://t.me/itsmeRj10" target="_blank">Telegram</a>
+        <button type="submit" class="submit-btn">Send Preorder</button>
+        <p id="responseMsg"></p>
+      </form>
     </div>
   </section>
+
+  <div class="contact-links">
+    <a href="https://www.facebook.com/share/1995K5GJaV/?mibextid=wwXIfr" target="_blank">Facebook Page</a>
+    <a href="https://connect.viber.com/business/8085460a-beae-11ef-b567-8260b7d9dfd7?utm_source=manage&utm_medium=copy_link" target="_blank">Viber</a>
+    <a href="https://t.me/itsmeRj10" target="_blank">Telegram</a>
+  </div>
 
   <script>
-    document.getElementById("preorderForm").addEventListener("submit", function(e) {
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(sec => sec.classList.remove('visible'));
+      document.getElementById(sectionId).classList.add('visible');
+    }
+
+    function handlePreorder(e) {
       e.preventDefault();
-      const model = document.getElementById("model").value.toLowerCase();
-      const fakeModels = ["iphone 17 air", "samsung s25 ultra"];
-      if (fakeModels.includes(model)) {
-        document.getElementById("result").textContent = "❌ Sorry, that model does not exist. Please check again.";
-      } else {
-        document.getElementById("result").textContent = "✅ Your request has been received. We will contact you soon.";
+      const model = document.getElementById('model').value.trim().toLowerCase();
+      const response = document.getElementById('responseMsg');
+      const knownPhones = ['iphone 13', 'iphone 14', 'iphone 15', 'samsung galaxy s23', 'redmi note 12'];
+
+      const isNewPhone = knownPhones.includes(model);
+      document.getElementById('budgetRow').style.display = isNewPhone ? 'none' : 'block';
+
+      if (/iphone\s*1[6-9]|iphone\s*17|iphone\s*20|air/i.test(model)) {
+        response.textContent = "❗ This model does not currently exist. Please check again.";
+        response.style.color = 'red';
+        return;
       }
-    });
+
+      response.textContent = "✅ Thank you! We'll contact you soon.";
+      response.style.color = 'green';
+    }
   </script>
 </body>
 </html>
