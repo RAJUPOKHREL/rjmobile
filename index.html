@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RJ မိုဘိုင်း</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
+    header { background: #000; color: #fff; padding: 1rem; text-align: center; }
+    nav { display: flex; justify-content: center; background: #222; }
+    nav button {
+      background: none; border: none; color: #fff; padding: 1rem; cursor: pointer;
+      transition: background 0.3s;
+    }
+    nav button:hover { background: #444; }
+    .section { display: none; padding: 2rem; }
+    .section.active { display: block; }
+    .contact-icons img {
+      width: 40px; height: 40px; margin: 0 10px; cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .contact-icons img:hover { transform: scale(1.2); }
+    footer { text-align: center; padding: 1rem; font-size: 14px; background: #eee; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>RJ မိုဘိုင်း</h1>
+    <p>RJ မိုဘိုင်းမှ ကြိုဆိုပါတယ်။ ကျွန်ုပ်တို့သည် စက်အနည်းငယ်ဖြင့် စတင်နေပါသည်။ လာမည့်ရက်များတွင် စက်ပစ္စည်းများ ထပ်မံထည့်သွင်းသွားပါမည်။</p>
+  </header>
+
+  <nav>
+    <button onclick="showSection('new')">Brand New</button>
+    <button onclick="showSection('used')">ဒုတိယလက်</button>
+    <button onclick="showSection('preorder')">Preorder</button>
+  </nav>
+
+  <div id="new" class="section active">
+    <h2>Brand New Phones</h2>
+    <p>New devices will appear here.</p>
+  </div>
+
+  <div id="used" class="section">
+    <h2>ဒုတိယလက် ဖုန်းများ</h2>
+    <p>High-quality used phones available.</p>
+  </div>
+
+  <div id="preorder" class="section">
+    <h2>ကြိုတင်မှာယူရန်</h2>
+    <form onsubmit="return handlePreorder(event)">
+      <label>လိုချင်သောမော်ဒယ်: <input id="model" required placeholder="e.g. iPhone 15 Pro Max" /></label><br><br>
+      <label>သတ်မှတ်ချက်များ: <input id="specs" placeholder="256GB, Blue" /></label><br><br>
+      <label>ဆက်သွယ်ရန်အချက်အလက်: <input id="contact" required placeholder="Phone / Email" /></label><br><br>
+      <button type="submit">Submit Preorder</button>
+      <p id="preorder-result" style="color: red; margin-top: 1rem;"></p>
+    </form>
+  </div>
+
+  <section class="contact-section" style="text-align:center; margin-top: 2rem;">
+    <h3>Contact</h3>
+    <div class="contact-icons">
+      <a href="https://www.facebook.com/share/1995K5GJaV/?mibextid=wwXIfr" target="_blank">
+        <img src="https://img.icons8.com/ios-filled/50/facebook.png" alt="Facebook" />
+      </a>
+      <a href="https://connect.viber.com/business/8085460a-beae-11ef-b567-8260b7d9dfd7?utm_source=manage&utm_medium=copy_link" target="_blank">
+        <img src="https://img.icons8.com/ios-filled/50/viber.png" alt="Viber" />
+      </a>
+      <a href="https://t.me/itsmeRj10" target="_blank">
+        <img src="https://img.icons8.com/ios-filled/50/telegram-app.png" alt="Telegram" />
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 RJ မိုဘိုင်း - All rights reserved.
+  </footer>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function handlePreorder(e) {
+      e.preventDefault();
+      const model = document.getElementById('model').value.toLowerCase();
+      const fakeModels = ["iphone 17 air", "galaxy s26 edge", "nokia 2025 max"];
+      const warning = document.getElementById('preorder-result');
+
+      if (fakeModels.includes(model)) {
+        warning.textContent = `"${model}" သည် မတည်ရှိသည့် မော်ဒယ်ဖြစ်နိုင်ပါသည်။ ကျေးဇူးပြု၍ မှန်ကန်သောအချက်အလက်ဖြင့် ထပ်မံကြိုးစားပါ။`;
+      } else {
+        warning.textContent = "ကြိုတင်မှာယူမှုအောင်မြင်ပါသည်။ မကြာမီ ဆက်သွယ်ပေးပါမည်။";
+        // Here you would send the data to Firestore in production
+      }
+      return false;
+    }
+  </script>
+</body>
+</html>
